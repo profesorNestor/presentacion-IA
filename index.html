@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 IA en Educación - Transformando el Aula del Futuro</title>
+    <!-- Librería de íconos Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fuentes de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Generales y Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- Fondos y Overlays Futuristas --- */
+
+        .space-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: 
+                radial-gradient(circle at 25% 25%, #1a237e 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, #004d40 0%, transparent 50%),
+                #0a0e1a;
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-image: 
+                linear-gradient(rgba(0, 150, 255, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 150, 255, 0.07) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridFloat 30s linear infinite;
+        }
+
+        @keyframes gridFloat {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        .space-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00e5ff;
+            border-radius: 50%;
+            animation: float-particle 12s infinite linear;
+            opacity: 0.7;
+        }
+
+        .particle:nth-child(2n) { background: #0096ff; animation-duration: 15s; }
+        .particle:nth-child(3n) { background: #ffffff; animation-duration: 10s; }
+
+        @keyframes float-particle {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- Barra de Navegación --- */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 26, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 150, 255, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00e5ff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+        }
+
+        .nav-menu li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.7rem 1.1rem;
+            border: 2px solid rgba(0, 150, 255, 0.3);
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            font-weight: 500;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-menu li a::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .nav-menu li a:hover::before { left: 100%; }
+
+        .nav-menu li a:hover {
+            background: rgba(0, 229, 255, 0.15);
+            color: #00e5ff;
+            border-color: #00e5ff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 229, 255, 0.4);
+        }
+
+        /* --- Estructura de Secciones --- */
+
+        section {
+            padding: 8rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #00e5ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00e5ff, transparent);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 0;
+            background: radial-gradient(circle at center, rgba(0, 229, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-astronaut {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.2;
+        }
+
+        .hero h1 .highlight {
+            color: #00e5ff;
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #b0bec5;
+        }
+
+        .hero .author {
+            font-size: 1.2rem;
+            color: #00e5ff;
+            font-weight: 600;
+            margin-bottom: 3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: #00e5ff;
+            color: #0a0e1a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 229, 255, 0.5);
+            background: #ffffff;
+        }
+
+        /* --- Estilo de Tarjetas (Cards) --- */
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .card, .practice-item, .tool-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(0, 150, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover, .practice-item:hover, .tool-item:hover {
+            transform: translateY(-10px);
+            border-color: #00e5ff;
+            box-shadow: 0 20px 40px rgba(0, 229, 255, 0.2);
+        }
+        
+        [data-modal-target] {
+            cursor: pointer;
+        }
+
+        [data-modal-target]:hover {
+            border-color: #ffc107;
+            box-shadow: 0 20px 40px rgba(255, 193, 7, 0.3);
+        }
+
+        .click-indicator {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid #ffc107;
+            border-radius: 15px;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: #ffc107;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.7; box-shadow: 0 0 5px rgba(255, 193, 7, 0.3); }
+            50% { opacity: 1; box-shadow: 0 0 15px rgba(255, 193, 7, 0.6); }
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: #00e5ff;
+            margin-bottom: 1.5rem;
+            display: block;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #ffffff;
+            min-height: 56px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .card-content {
+            line-height: 1.6;
+            color: #b0bec5;
+            text-align: center;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+
+        /* --- Lista de Herramientas --- */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .tool-item { padding: 1.5rem; }
+        .tool-name {
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            color: #00e5ff;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-align: left;
+        }
+        .tool-description { color: #b0bec5; text-align: left;}
+
+        /* --- Grid de Aplicaciones --- */
+        .practices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .practice-item { padding: 2rem; }
+        .practice-item:hover { transform: scale(1.05); }
+
+        .practice-emoji { font-size: 3rem; margin-bottom: 1rem; display: block; }
+        .practice-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.1rem;
+            color: #00e5ff;
+            margin-bottom: 1rem;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-grow: 1;
+        }
+        .practice-description { color: #b0bec5; font-size: 0.95rem; }
+
+        /* --- Línea de Tiempo Interactiva (dentro de modal) --- */
+        .timeline-modal-container {
+            display: flex;
+            gap: 2rem;
+            min-height: 60vh;
+        }
+        .timeline-visual {
+            position: relative;
+            flex: 0 0 150px; /* Ancho fijo para la columna de fechas */
+        }
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: rgba(0, 229, 255, 0.3);
+        }
+        .timeline-event-marker {
+            position: relative;
+            margin-bottom: 4rem;
+            cursor: pointer;
+            padding-left: 50px;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #0a0e1a;
+            border: 4px solid #00e5ff;
+            transition: all 0.3s ease;
+        }
+        .timeline-event-marker.active .timeline-dot,
+        .timeline-event-marker:hover .timeline-dot {
+            background: #ffc107;
+            border-color: #ffc107;
+            transform: translateY(-50%) scale(1.2);
+        }
+        .timeline-date {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            color: #ffffff;
+        }
+        .timeline-details {
+            flex-grow: 1;
+            border-left: 1px solid rgba(0, 229, 255, 0.2);
+            padding-left: 2rem;
+        }
+        .timeline-detail-content {
+            display: none;
+        }
+        .timeline-detail-content.active {
+            display: block;
+        }
+        
+        /* --- Mapa Mental --- */
+        .mindmap-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            min-height: 60vh;
+        }
+        .mindmap-node {
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid #00e5ff;
+            color: #ffffff;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            position: absolute;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .mindmap-node:hover {
+            background: #00e5ff;
+            color: #0a0e1a;
+            transform: scale(1.1);
+        }
+        .mindmap-node.center {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            padding: 1.5rem 2rem;
+            background: #00e5ff;
+            color: #0a0e1a;
+            z-index: 10;
+        }
+        /* Posiciones y líneas (usando pseudo-elementos) */
+        .mindmap-line {
+            position: absolute;
+            background: rgba(0, 229, 255, 0.5);
+            z-index: 1;
+        }
+        /* Manual positioning for demo */
+        .node-ml { top: 10%; left: 5%; }
+        .node-dl { top: 30%; left: 0; }
+        .node-nlp { top: 60%; left: 5%; }
+        .node-vision { top: 10%; right: 5%; }
+        .node-gen { top: 30%; right: 0; }
+        .node-robotics { top: 60%; right: 5%; }
+
+        
+        /* --- Footer --- */
+        footer {
+            background: rgba(10, 14, 26, 0.95);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 150, 255, 0.3);
+        }
+        .author-info {
+            color: #00e5ff;
+            font-weight: 600;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            line-height: 1.5;
+        }
+        .institution-info {
+            color: #b0bec5;
+            margin-top: 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* --- Sistema de Ventanas Modales --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #0a0e1a, #1a237e);
+            border: 2px solid #00e5ff;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 0 60px rgba(0, 229, 255, 0.3);
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.3);
+            padding-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: #00e5ff;
+            margin: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: 2px solid #00e5ff;
+            color: #00e5ff;
+            font-size: 1.5rem;
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background: #00e5ff;
+            color: #0a0e1a;
+            transform: rotate(90deg);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+        }
+
+        .modal-body {
+            color: #b0bec5;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .modal-body h3 {
+            color: #ffc107;
+            font-family: 'Orbitron', monospace;
+            margin: 2rem 0 1rem 0;
+        }
+        .modal-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .modal-body li {
+            padding: 0.8rem 1rem;
+            border-left: 3px solid #00e5ff;
+            margin-bottom: 0.8rem;
+            background: rgba(0, 229, 255, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+        .modal-body .reflection-author {
+            font-weight: bold;
+            color: #00e5ff;
+            display: block;
+            margin-top: -0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        .example-box {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        .example-box::before {
+            content: '💡 EJEMPLO PRÁCTICO';
+            position: absolute;
+            top: -14px; left: 20px;
+            background: #10162F;
+            color: #ffc107;
+            padding: 0.2rem 1rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .example-code {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            color: #9effa2;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            .nav-menu { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2.2rem; }
+            .cards-grid, .tools-grid, .practices-grid { grid-template-columns: 1fr; }
+            .modal-content { padding: 1.5rem; }
+            .modal-title { font-size: 1.5rem; }
+            .timeline-modal-container { flex-direction: column; }
+            .mindmap-node { position: static; margin: 0.5rem auto; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Elementos del fondo y partículas -->
+    <div class="space-bg"></div>
+    <div class="grid-overlay"></div>
+    <div class="space-particles"></div>
+
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><span>🚀</span> NEXUS IA</div>
+            <ul class="nav-menu">
+                <li><a href="#inicio"><i class="fas fa-rocket"></i> Inicio</a></li>
+                <li><a href="#introduccion"><i class="fas fa-brain"></i> Conceptos</a></li>
+                <li><a href="#herramientas"><i class="fas fa-tools"></i> Herramientas</a></li>
+                <li><a href="#aplicaciones"><i class="fas fa-magic"></i> Aplicaciones</a></li>
+                <li><a href="#entornos"><i class="fas fa-desktop"></i> Entornos</a></li>
+                <li><a href="#futuro"><i class="fas fa-space-shuttle"></i> Futuro</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sección Principal (Hero) -->
+    <section id="inicio" class="hero">
+        <div class="hero-astronaut">🧑‍🚀</div>
+        <h1><span class="highlight">Inteligencia Artificial</span><br>en Educación</h1>
+        <p class="subtitle">Una herramienta para transformar el aula del siglo XXI</p>
+        <p class="author">Prof. Néstor Fabio Montoya Palacios</p>
+        <a href="#introduccion" class="cta-button"><i class="fas fa-play"></i> Comenzar Misión</a>
+    </section>
+
+    <!-- Introducción a la IA -->
+    <section id="introduccion">
+        <h2 class="section-title">🧠 Conceptos Fundamentales</h2>
+        <div class="cards-grid">
+            <div class="card" data-modal-target="modal-que-es-ia">
+                <i class="card-icon fas fa-microchip"></i>
+                <h3 class="card-title">¿Qué es la IA?</h3>
+                <p class="card-content">La simulación de procesos de inteligencia humana por parte de máquinas, especialmente sistemas informáticos.</p>
+            </div>
+             <div class="card" data-modal-target="modal-estructura-ia">
+                <i class="card-icon fas fa-project-diagram"></i>
+                <h3 class="card-title">Estructura de la IA</h3>
+                <p class="card-content">Explora las ramas principales de la IA en un mapa conceptual interactivo.</p>
+            </div>
+            <div class="card" data-modal-target="modal-historia-ia">
+                <i class="card-icon fas fa-history"></i>
+                <h3 class="card-title">Historia de la IA</h3>
+                <p class="card-content">Viaja en el tiempo y descubre los hitos clave que han marcado la evolución de la inteligencia artificial.</p>
+            </div>
+            <div class="card" data-modal-target="modal-llm">
+                <i class="card-icon fas fa-comments"></i>
+                <h3 class="card-title">Modelos de Lenguaje (LLM)</h3>
+                <p class="card-content">El motor detrás de la IA conversacional. Aprende cómo funcionan y qué los hace tan poderosos.</p>
+            </div>
+            <div class="card" data-modal-target="modal-conceptos-clave">
+                <i class="card-icon fas fa-cogs"></i>
+                <h3 class="card-title">Conceptos Clave</h3>
+                <p class="card-content">Domina los términos esenciales: Prompt, Token, Temperatura, Ventana de Contexto y Fine-Tuning.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Herramientas de IA -->
+    <section id="herramientas">
+        <h2 class="section-title">🛠️ Principales Herramientas de IA</h2>
+        <div class="tools-grid">
+            <div class="tool-item" data-modal-target="modal-chatgpt">
+                <h3 class="tool-name"><i class="fas fa-robot"></i> ChatGPT (OpenAI)</h3>
+                <p class="tool-description">El pionero y más popular. Ideal para generar ideas, textos y explicaciones complejas.</p>
+            </div>
+            <div class="tool-item" data-modal-target="modal-gemini">
+                <h3 class="tool-name"><i class="fab fa-google"></i> Gemini (Google)</h3>
+                <p class="tool-description">Potente y multimodal, integrado en el ecosistema de Google. Excelente para investigación y análisis.</p>
+            </div>
+            <div class="tool-item" data-modal-target="modal-claude">
+                <h3 class="tool-name"><i class="fas fa-feather-alt"></i> Claude (Anthropic)</h3>
+                <p class="tool-description">Conocido por su gran ventana de contexto y su enfoque ético. Ideal para analizar documentos largos.</p>
+            </div>
+            <div class="tool-item" data-modal-target="modal-copilot">
+                <h3 class="tool-name"><i class="fab fa-microsoft"></i> Microsoft Copilot</h3>
+                <p class="tool-description">Integrado en Office 365 y Windows, actúa como un asistente de productividad para el día a día.</p>
+            </div>
+             <div class="tool-item" data-modal-target="modal-perplexity">
+                <h3 class="tool-name"><i class="fas fa-search"></i> Perplexity AI</h3>
+                <p class="tool-description">Un motor de búsqueda conversacional que cita sus fuentes. Perfecto para la investigación académica.</p>
+            </div>
+            <div class="tool-item" data-modal-target="modal-notebooklm">
+                <h3 class="tool-name"><i class="fas fa-book"></i> NotebookLM (Google)</h3>
+                <p class="tool-description">Tu asistente de investigación personal. Sube tus fuentes y la IA te ayuda a analizarlas y encontrar conexiones.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aplicaciones Prácticas -->
+    <section id="aplicaciones">
+        <h2 class="section-title">💡 Aplicaciones Prácticas</h2>
+        <div class="practices-grid">
+            <div class="practice-item" data-modal-target="modal-resolver-ejercicios">
+                <span class="practice-emoji"><i class="fas fa-calculator"></i></span>
+                <h3 class="practice-title">Resolver y Explicar Ejercicios</h3>
+                <p class="practice-description">Matemáticas, física y química paso a paso, con métodos alternativos.</p>
+            </div>
+            <div class="practice-item" data-modal-target="modal-crear-material">
+                <span class="practice-emoji"><i class="fas fa-file-alt"></i></span>
+                <h3 class="practice-title">Crear Material Educativo</h3>
+                <p class="practice-description">Guías, talleres, planes de área y rúbricas personalizadas en minutos.</p>
+            </div>
+            <div class="practice-item" data-modal-target="modal-gamificacion">
+                <span class="practice-emoji"><i class="fas fa-gamepad"></i></span>
+                <h3 class="practice-title">Gamificación y Storytelling</h3>
+                <p class="practice-description">Diseña juegos, quizzes y narrativas interactivas para motivar a tus estudiantes.</p>
+            </div>
+            <div class="practice-item" data-modal-target="modal-ideas-innovadoras">
+                <span class="practice-emoji"><i class="fas fa-lightbulb"></i></span>
+                <h3 class="practice-title">Generar Ideas Innovadoras</h3>
+                <p class="practice-description">Tu socio para brainstorming de clases, proyectos y métodos de evaluación.</p>
+            </div>
+            <div class="practice-item" data-modal-target="modal-crear-presentaciones">
+                <span class="practice-emoji"><i class="fas fa-file-powerpoint"></i></span>
+                <h3 class="practice-title">Crear Presentaciones</h3>
+                <p class="practice-description">Genera guiones, contenido e incluso imágenes para tus diapositivas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Entornos Recomendados -->
+    <section id="entornos">
+        <h2 class="section-title">🌐 Entornos Recomendados</h2>
+        <div class="cards-grid">
+            <div class="card" data-modal-target="modal-entornos-programacion">
+                <i class="card-icon fab fa-python"></i>
+                <h3 class="card-title">Programación con Python</h3>
+                <p class="card-content">Descubre por qué Python es el lenguaje de la IA y cómo usar Colab y Jupyter para enseñar y aprender.</p>
+            </div>
+            <div class="card" data-modal-target="modal-latex">
+                <i class="card-icon fas fa-scroll"></i>
+                <h3 class="card-title">Documentos con LaTeX</h3>
+                <p class="card-content">Crea documentos científicos y académicos de alta calidad con la ayuda de la IA en plataformas como Overleaf.</p>
+            </div>
+            <div class="card" data-modal-target="modal-plataformas-ia">
+                <i class="card-icon fas fa-chalkboard-teacher"></i>
+                <h3 class="card-title">Plataformas Educativas con IA</h3>
+                <p class="card-content">Explora herramientas como Khanmigo, Eduaide y Curipod, diseñadas específicamente para el aula.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Futuro y Retos de la IA -->
+    <section id="futuro">
+        <h2 class="section-title">🚀 Futuro y Retos de la IA</h2>
+        <div class="cards-grid">
+            <div class="card" data-modal-target="modal-aprendizaje-personalizado">
+                <i class="card-icon fas fa-user-graduate"></i>
+                <h3 class="card-title">Aprendizaje Personalizado</h3>
+                <p class="card-content">Asistentes que adaptan el aprendizaje al ritmo y estilo de cada estudiante, disponibles 24/7.</p>
+            </div>
+            <div class="card" data-modal-target="modal-retos-ia">
+                <i class="card-icon fas fa-exclamation-triangle"></i>
+                <h3 class="card-title">Retos y Reflexiones Éticas</h3>
+                <p class="card-content">Analiza los desafíos como el sesgo, la honestidad académica y el rol del docente en la era de la IA.</p>
+            </div>
+            <div class="card" data-modal-target="modal-automatizacion">
+                <i class="card-icon fas fa-cogs"></i>
+                <h3 class="card-title">Automatización Inteligente</h3>
+                <p class="card-content">La IA se encargará de tareas administrativas, permitiendo al docente enfocarse en la conexión humana.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de Página -->
+    <footer>
+        <div class="footer-content">
+            <p class="author-info">
+                Presentado por el profesor: Néstor Fabio Montoya Palacios<br>
+                IA en la educación para transformar el aula.
+            </p>
+            <p class="institution-info">
+                🏛️ Colegio María Auxiliadora de Cartago, Valle del Cauca - Colombia<br>
+                🧮 Matemáticas • ⚡ Física • 🐍 Programación en Python
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== VENTANAS MODALES ===== -->
+    
+    <div id="modal-que-es-ia" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">🤖 ¿Qué es la IA?</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>La <strong>Inteligencia Artificial</strong> es una rama de la informática que busca crear sistemas capaces de realizar tareas que, si fueran hechas por un humano, requerirían inteligencia. No se trata de crear una "conciencia", sino de simular procesos cognitivos.</p><h3>🧠 Capacidades Clave en la Práctica:</h3><ul><li><strong>Aprendizaje:</strong> Ajustar su funcionamiento basado en datos y experiencia (ej. un filtro de spam que mejora al marcar correos).</li><li><strong>Razonamiento:</strong> Usar la lógica para llegar a conclusiones (ej. un sistema que diagnostica fallos en un circuito).</li><li><strong>Procesamiento de Lenguaje Natural (PLN):</strong> Comprender y generar lenguaje humano (la base de ChatGPT, Gemini, etc.).</li><li><strong>Visión por Computadora:</strong> Interpretar y entender información del mundo visual (ej. reconocer un rostro o leer una placa).</li></ul><div class="example-box"><p>En el aula, esto se traduce en herramientas que no solo dan una respuesta, sino que pueden <strong>explicar el porqué</strong>, <strong>adaptar la dificultad</strong> de un problema o <strong>crear nuevos ejemplos</strong> para reforzar un concepto.</p></div></div></div></div>
+    <div id="modal-tipos-ia" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">⚛️ Tipos de IA</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>Comprender los tipos de IA nos ayuda a saber qué esperar de cada herramienta.</p><h3>IA Débil (o Estrecha)</h3><p>Es la IA que domina nuestro mundo actual. Está diseñada y entrenada para una <strong>tarea específica</strong>.</p><ul><li><strong>Ejemplos:</strong> Siri, el reconocimiento facial de tu móvil, las recomendaciones de Netflix, un GPS.</li><li><strong>En el aula:</strong> Un software que califica exámenes de opción múltiple o una herramienta que traduce textos.</li></ul><h3>IA Fuerte (o General)</h3><p>Es el tipo de IA que vemos en la ciencia ficción. Poseería una inteligencia similar a la humana, capaz de comprender, aprender y aplicar su conocimiento a una <strong>amplia gama de tareas</strong>. <strong>Aún no existe.</strong></p><h3>IA Generativa</h3><p>Es un subcampo revolucionario que se enfoca en <strong>crear contenido nuevo y original</strong> en lugar de solo analizar o procesar datos existentes. ¡Es la que más nos interesa como educadores!</p><ul><li><strong>Ejemplos:</strong> ChatGPT (texto), DALL-E (imágenes), Suno (música).</li><li><strong>En el aula:</strong> Crear planes de clase, generar problemas de matemáticas, diseñar imágenes para una presentación, escribir guiones para un video educativo.</li></ul></div></div></div>
+    <div id="modal-llm" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">💬 Modelos de Lenguaje (LLM)</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>Un <strong>Modelo Grande de Lenguaje (LLM)</strong> es una red neuronal masiva entrenada con una cantidad gigantesca de texto (básicamente, gran parte de internet). Su objetivo es predecir la siguiente palabra más probable en una secuencia. De esta simple premisa, emergen capacidades asombrosas como la traducción, el resumen y la conversación.</p><h3>Ventana de Contexto (Context Window)</h3><p>Es la "memoria" del modelo en una conversación. Se mide en tokens. Si un modelo tiene una ventana de 8,000 tokens, puede "recordar" las últimas ~6,000 palabras de la conversación. Cualquier cosa dicha antes de eso, se olvida.</p><ul><li><strong>Ventana Pequeña (ej. 4k tokens):</strong> Buena para preguntas y respuestas rápidas.</li><li><strong>Ventana Grande (ej. 128k+ tokens):</strong> Puede analizar documentos enteros, libros o bases de código para responder preguntas sobre ellos.</li></ul><h3>Fine-Tuning (Ajuste Fino)</h3><p>Es el proceso de tomar un LLM pre-entrenado y re-entrenarlo con un conjunto de datos más pequeño y especializado. Esto permite que el modelo se vuelva un experto en un área específica.</p><div class="example-box"><h3>Ejemplo de Fine-Tuning</h3><p>Podríamos hacer un "fine-tuning" de un modelo como GPT con todos los trabajos de Gabriel García Márquez. El resultado sería un chatbot que no solo conoce los datos de sus libros, sino que puede escribir y responder "al estilo" de García Márquez.</p></div></div></div></div>
+    <div id="modal-conceptos-clave" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">⚙️ Conceptos Clave</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><h3>🎯 Prompt (Instrucción)</h3><p>Es la instrucción, pregunta o tarea que le das a la IA. La calidad de tu prompt determina el 90% de la calidad de la respuesta. Es el arte de "hablarle" a la máquina.</p><div class="example-code"><strong>❌ Prompt Débil:</strong> "ideas para una clase de física"
+<strong>✅ Prompt Fuerte:</strong> "Actúa como un profesor de física experto en metodologías activas. Dame 3 ideas de proyectos prácticos para estudiantes de 10° grado sobre las Leyes de Newton. Para cada idea, incluye el objetivo de aprendizaje, los materiales necesarios y una forma de evaluación."</div><h3>🔢 Token</h3><p>Es la unidad fundamental en que la IA procesa el texto. No es una palabra ni una letra, sino fragmentos de palabras. Aproximadamente, <strong>100 tokens son unas 75 palabras en español</strong>. Es importante porque los modelos tienen un límite de tokens que pueden procesar (la "ventana de contexto").</p><h3>🌡️ Temperatura</h3><p>Es un parámetro que controla la "creatividad" o aleatoriedad de la respuesta.</p><ul><li><strong>Baja (ej. 0.2):</strong> Respuestas más predecibles, directas y fácticas. Ideal para resúmenes o extracción de datos.</li><li><strong>Alta (ej. 0.8):</strong> Respuestas más creativas, diversas y a veces inesperadas. Ideal para brainstorming o escritura creativa.</li></ul></div></div></div>
+    <div id="modal-historia-ia" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">📜 Línea de Tiempo de la IA</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><div class="timeline-modal-container"><div class="timeline-visual"><div class="timeline-line"></div><div class="timeline-event-marker active" data-content-target="content-1950"><div class="timeline-dot"></div><div class="timeline-date">1950</div></div><div class="timeline-event-marker" data-content-target="content-1956"><div class="timeline-dot"></div><div class="timeline-date">1956</div></div><div class="timeline-event-marker" data-content-target="content-1997"><div class="timeline-dot"></div><div class="timeline-date">1997</div></div><div class="timeline-event-marker" data-content-target="content-2017"><div class="timeline-dot"></div><div class="timeline-date">2017</div></div><div class="timeline-event-marker" data-content-target="content-2022"><div class="timeline-dot"></div><div class="timeline-date">2022</div></div><div class="timeline-event-marker" data-content-target="content-2024"><div class="timeline-dot"></div><div class="timeline-date">2024</div></div></div><div class="timeline-details"><div id="content-1950" class="timeline-detail-content active"><h3>El Test de Turing</h3><p>El matemático británico <strong>Alan Turing</strong>, considerado uno de los padres de la computación, publica su artículo "Computing Machinery and Intelligence". En él, propone una pregunta revolucionaria: "¿Pueden pensar las máquinas?". Para responderla, diseña el <strong>"Juego de Imitación"</strong>. Si un interrogador humano no puede distinguir de manera confiable entre una máquina y un humano, la máquina pasa el test. Es la base filosófica de los chatbots modernos.</p></div><div id="content-1956" class="timeline-detail-content"><h3>Nace el Término "IA"</h3><p>En la <strong>Conferencia de Dartmouth</strong>, John McCarthy acuña por primera vez el término "Inteligencia Artificial", dándole un nombre y una identidad al campo de estudio. El evento reunió a los pioneros que sentarían las bases de la investigación en IA para las décadas venideras.</p></div><div id="content-1997" class="timeline-detail-content"><h3>Deep Blue Vence al Ajedrez</h3><p>La supercomputadora de IBM, <strong>Deep Blue</strong>, derrota al campeón mundial de ajedrez, Garry Kaspárov. Fue un hito cultural que demostró que las máquinas podían superar a los humanos en tareas de alta complejidad lógica, llevando a la IA a los titulares de todo el mundo.</p></div><div id="content-2017" class="timeline-detail-content"><h3>La Revolución "Transformer"</h3><p>Investigadores de Google publican el paper <strong>"Attention Is All You Need"</strong>, introduciendo la arquitectura "Transformer". Su mecanismo de "atención" permitió a los modelos comprender el contexto a largo plazo, siendo la chispa que encendió la revolución de la IA generativa actual. Sin él, no existirían GPT ni Gemini.</p></div><div id="content-2022" class="timeline-detail-content"><h3>ChatGPT se Vuelve Viral</h3><p>OpenAI lanza <strong>ChatGPT</strong>. Su interfaz amigable y gratuita democratizó el acceso a la IA generativa. En dos meses, superó los 100 millones de usuarios, forzando una conversación global sobre el impacto de la IA en la sociedad y la educación.</p></div><div id="content-2024" class="timeline-detail-content"><h3>La Era de la IA Multimodal</h3><p>Modelos como GPT-4o y Gemini se vuelven nativamente <strong>multimodales</strong>, capaces de procesar y generar texto, imágenes, audio y video en tiempo real. La interacción con la IA pasa de ser un chat a una colaboración fluida con un asistente que puede ver, oír y hablar.</p></div></div></div></div></div></div>
+    <div id="modal-estructura-ia" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">🗺️ Mapa Conceptual de la IA</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>La Inteligencia Artificial es un campo vasto con muchas ramas interconectadas. Este mapa visualiza las áreas más importantes.</p><div class="mindmap-container"><div class="mindmap-node center">Inteligencia Artificial</div><div class="mindmap-node node-ml">Machine Learning</div><div class="mindmap-node node-dl">Deep Learning</div><div class="mindmap-node node-nlp">Procesamiento de Lenguaje Natural (PLN)</div><div class="mindmap-node node-vision">Visión por Computadora</div><div class="mindmap-node node-gen">IA Generativa</div><div class="mindmap-node node-robotics">Robótica</div></div><p style="margin-top: 2rem;">El <strong>Machine Learning</strong> (Aprendizaje Automático) es el subcampo donde las máquinas aprenden de los datos. El <strong>Deep Learning</strong> (Aprendizaje Profundo) es una técnica de Machine Learning que utiliza redes neuronales profundas y es la base de los avances más recientes, incluyendo la <strong>IA Generativa</strong> y el <strong>PLN</strong>.</p></div></div></div>
+    <div id="modal-chatgpt" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">🤖 ChatGPT en el Aula</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>ChatGPT es como tener un asistente experto en casi cualquier tema, disponible al instante. Su poder para los docentes radica en su capacidad para ahorrar tiempo y potenciar la creatividad.</p><h3>💡 Usos Esenciales para Docentes:</h3><ul><li><strong>Diferenciación:</strong> "Adapta este texto sobre la célula para un estudiante de 7° grado con dificultades de lectura. Usa analogías simples y viñetas."</li><li><strong>Creación de Evaluaciones:</strong> "Crea 5 preguntas de opción múltiple y 2 preguntas abiertas para evaluar la comprensión de la Revolución Francesa en 9° grado."</li><li><strong>Andamiaje (Scaffolding):</strong> "Voy a enseñar a resolver ecuaciones de primer grado. Dame una secuencia de 4 ejercicios que aumenten gradualmente en dificultad."</li><li><strong>Simulación de Roles:</strong> "Vamos a tener un debate. Tú serás un defensor del uso de energía nuclear y yo estaré en contra. Empieza con tu argumento principal."</li></ul><div class="example-box"><h3>Prompt "Mágico" para Plan de Clase</h3><div class="example-code">"Actúa como un diseñador instruccional experto. Créame un plan de clase de 50 minutos para [GRADO] sobre [TEMA ESPECÍFICO]. La clase debe seguir el modelo de las 5E (Engage, Explore, Explain, Elaborate, Evaluate). Detalla qué hará el profesor y qué harán los estudiantes en cada fase."</div></div></div></div></div>
+    <div id="modal-gemini" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">✨ Gemini (Google)</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p><strong>Gemini</strong> es la respuesta de Google a la revolución de la IA generativa. Es una familia de modelos (desde el más pequeño, Nano, hasta el más potente, Pro) diseñados para ser <strong>nativamente multimodales</strong>, es decir, capaces de entender y combinar información de texto, imágenes, audio y video desde su concepción.</p><h3>Ventajas en el Aula:</h3><ul><li><strong>Integración con el Ecosistema Google:</strong> Potencia herramientas como Google Docs, Sheets y Slides. Imagina pedirle a Gemini que cree una presentación a partir de un documento o que analice datos en una hoja de cálculo.</li><li><strong>Capacidades Multimodales:</strong> Puedes darle una imagen de un circuito eléctrico y pedirle que explique cómo funciona, o subir un audio y pedirle una transcripción y un resumen.</li><li><strong>Conexión a la Información Actual:</strong> Al estar conectado a la Búsqueda de Google, puede ofrecer respuestas más actualizadas sobre eventos recientes.</li></ul><div class="example-box"><h3>Prompt para Investigación</h3><div class="example-code">"Actúa como un asistente de investigación. Estoy preparando una clase sobre el impacto de la inteligencia artificial en el mercado laboral para 2030. Resume los 5 puntos clave de los informes más recientes (últimos 12 meses) de consultoras como McKinsey y el Foro Económico Mundial. Proporciona enlaces a tus fuentes."</div></div></div></div></div>
+    <div id="modal-claude" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">🪶 Claude (Anthropic)</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p><strong>Claude</strong>, desarrollado por la empresa Anthropic, se diferencia por su enfoque en la seguridad, la ética y su <strong>enorme ventana de contexto</strong>. Anthropic fue fundada por ex-investigadores de OpenAI preocupados por la seguridad de la IA.</p><h3>Ventajas en el Aula:</h3><ul><li><strong>Análisis de Documentos Largos:</strong> Claude puede "leer" y analizar documentos mucho más largos que otros modelos (cientos de páginas). Puedes subir un PDF completo de un libro o un paper académico y hacerle preguntas detalladas sobre su contenido.</li><li><strong>IA "Constitucional":</strong> Ha sido entrenado con un conjunto de principios (una "constitución") para ser más útil, honesto e inofensivo, lo que reduce la probabilidad de respuestas tóxicas o sesgadas.</li><li><strong>Excelente para Resumir y Sintetizar:</strong> Es particularmente bueno para extraer las ideas clave de textos largos y complejos.</li></ul><div class="example-box"><h3>Prompt para Análisis de Lectura</h3><div class="example-code">"He subido el PDF de 'Ensayo sobre la ceguera' de Saramago. Actúa como un experto en literatura. Analiza cómo el autor utiliza la falta de nombres propios de los personajes para reforzar el tema de la deshumanización. Proporciona 3 citas textuales del libro que apoyen tu análisis."</div></div></div></div></div>
+    <div id="modal-copilot" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title"> copiloto de microsoft</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p><strong>microsoft copiloto</strong> es la integración de la IA generativa de OpenAI (modelos GPT) dentro del ecosistema de Microsoft. Su objetivo es actuar como un "copiloto" que te asiste en las tareas diarias dentro de las aplicaciones que ya usas.</p><h3>Ventajas en el Aula:</h3><ul><li><strong>Productividad en Office 365:</strong> Puede generar un borrador de un correo en Outlook, crear una presentación en PowerPoint a partir de un documento de Word, o generar fórmulas y gráficos en Excel.</li><li><strong>Integración en Windows:</strong> Está integrado directamente en el sistema operativo, permitiendo realizar ajustes, buscar archivos y obtener respuestas rápidas sin abrir un navegador.</li><li><strong>Generación de Código en VS Code:</strong> GitHub Copilot, una de sus versiones más famosas, es una herramienta indispensable para programadores, ya que sugiere líneas de código e incluso funciones enteras.</li></ul><div class="example-box"><h3>Prompt en PowerPoint</h3><div class="example-code">"Crear una presentación de 10 diapositivas sobre el ciclo del agua para niños de primaria. Incluye una diapositiva de título, una para cada etapa (evaporación, condensación, precipitación, recolección) y una diapositiva de resumen. Usa un lenguaje sencillo e imágenes de dibujos animados."</div></div></div></div></div>
+    <div id="modal-perplexity" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title"> perplexity ai</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p><strong>perplexity ai</strong> se posiciona como un "motor de respuestas" o un motor de búsqueda conversacional. Su principal diferencia es que <strong>siempre cita sus fuentes</strong>, mostrando los enlaces de donde obtuvo la información para construir su respuesta. Esto lo hace invaluable para la investigación.</p><h3>Ventajas en el Aula:</h3><ul><li><strong>Combate la Desinformación:</strong> Al citar las fuentes, permite a estudiantes y docentes verificar la información y evaluar la fiabilidad de los datos. Es una herramienta fantástica para enseñar alfabetización mediática.</li><li><strong>Ideal para Investigación Académica:</strong> Su modo "Académico" se enfoca en buscar papers y artículos científicos, lo que es extremadamente útil para trabajos de investigación.</li><li><strong>Preguntas de Seguimiento:</strong> Sugiere preguntas relacionadas para que los usuarios puedan profundizar en el tema.</li></ul><div class="example-box"><h3>Prompt para Investigación de Historia</h3><div class="example-code">"¿Cuáles fueron las principales causas económicas que llevaron a la caída del Imperio Romano de Occidente? Enfócate en aspectos como la inflación, la presión fiscal y la dependencia del trabajo esclavo. Por favor, cita tus fuentes usando artículos académicos o libros de historiadores reconocidos."</div></div></div></div></div>
+    <div id="modal-notebooklm" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title"> CuadernoLM (Google)</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p><strong>cuaderno lm</strong> es una herramienta de investigación de Google diseñada para ser tu "asistente de investigación virtual". La idea central es que tú proporcionas el material (tus "fuentes") y el modelo se basa <strong>únicamente en esos documentos</strong> para responder tus preguntas.</p><h3>Ventajas en el Aula:</h3><ul><li><strong>Evita Alucinaciones:</strong> Como solo usa tus fuentes, no inventará información de internet. Es un entorno de investigación controlado y seguro.</li><li><strong>Análisis Profundo de Fuentes:</strong> Puedes subir múltiples PDFs, documentos de Google, notas o sitios web, y NotebookLM los analizará todos para encontrar conexiones.</li><li><strong>Genera Resúmenes y Guías de Estudio:</strong> Puedes pedirle que cree un resumen de todos tus documentos, una guía de estudio con los conceptos clave, o una línea de tiempo basada en los eventos mencionados en tus fuentes.</li></ul><div class="example-box"><h3>Uso Práctico</h3><div class="example-code">"Imagina que subes 3 papers sobre la fotosíntesis. Podrías preguntarle: '¿Cuáles son las diferencias en la descripción del ciclo de Calvin entre el Paper 1 y el Paper 3?' o 'Crea una tabla comparando las metodologías de investigación de los tres documentos'."</div></div></div></div></div>
+    <div id="modal-resolver-ejercicios" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">🧮 Resolver y Explicar Ejercicios</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>La IA no es solo una calculadora, es un tutor. Su valor no está en dar la respuesta final, sino en desglosar el <strong>proceso</strong> y ofrecer <strong>explicaciones conceptuales</strong>.</p><h3>Matemáticas y Física</h3><p>Puedes pegar una imagen de un problema (con la versión de pago) o transcribirlo. La clave es pedir el razonamiento.</p><div class="example-box"><h3>Ejemplo de un Prompt Efectivo</h3><div class="example-code">"Resuelve el siguiente problema de física paso a paso: 'Un coche parte del reposo y acelera a 2 m/s² durante 10 segundos. ¿Qué distancia recorre?'
+
+Por favor, sigue esta estructura:
+1.  **Datos:** Lista los datos conocidos.
+2.  **Fórmula:** Indica la fórmula de cinemática a utilizar y por qué es la correcta.
+3.  **Desarrollo:** Muestra la sustitución de los datos en la fórmula.
+4.  **Resultado:** Da la respuesta final con sus unidades.
+5.  **Explicación conceptual:** Explica brevemente qué significa el resultado en el mundo real."</div></div><h3>Ventajas Pedagógicas:</h3><ul><li><strong>Generar Variaciones:</strong> "Ahora crea un problema similar pero donde la incógnita sea el tiempo."</li><li><strong>Identificar Errores:</strong> "He resuelto este problema y me da 200m. ¿Puedes revisar mi procedimiento y decirme dónde me equivoqué?"</li><li><strong>Conectar con la Realidad:</strong> "Dame 3 ejemplos de la vida cotidiana donde se aplique esta misma fórmula."</li></ul></div></div></div>
+    <div id="modal-crear-material" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">📄 Crear Material Educativo</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>Esta es una de las aplicaciones que más tiempo ahorra. La IA puede actuar como tu co-creador de contenido, generando borradores que luego puedes perfeccionar y adaptar a tu estilo.</p><h3>Creación de Rúbricas</h3><p>Las rúbricas son esenciales para una evaluación justa, pero tediosas de crear. La IA las genera en segundos.</p><div class="example-box"><h3>Prompt para una Rúbrica de Laboratorio</h3><div class="example-code">"Crea una rúbrica analítica para evaluar un informe de laboratorio de química para 11° grado. Debe tener 4 criterios: 'Planteamiento de la Hipótesis', 'Procedimiento y Metodología', 'Análisis de Resultados' y 'Conclusiones'. Para cada criterio, describe los niveles de desempeño: 'Sobresaliente (4 pts)', 'Bueno (3 pts)', 'Suficiente (2 pts)' e 'Insuficiente (1 pt)'."</div></div><h3>Otros Materiales:</h3><ul><li><strong>Guías de Lectura:</strong> "Genera una guía de lectura para el primer capítulo de 'Cien años de soledad' con 5 preguntas de comprensión, 3 de análisis y 1 de reflexión personal."</li><li><strong>Talleres Prácticos:</strong> "Diseña un taller de 3 actividades para practicar el uso del presente perfecto en inglés para estudiantes de nivel B1."</li><li><strong>Planes de Área:</strong> Puedes darle el formato de tu institución y pedirle que complete las secciones (objetivos, competencias, metodología, etc.) para un tema y grado específicos.</li></ul></div></div></div>
+    <div id="modal-gamificacion" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">🎮 Gamificación y Storytelling con IA</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>La gamificación utiliza elementos de juego para aumentar la motivación y el compromiso. La IA puede ser una increíble aliada para crear experiencias de aprendizaje lúdicas.</p><h3>Creación de Quizzes Interactivos</h3><p>Puedes pedirle a la IA que genere preguntas en formatos divertidos.</p><div class="example-box"><h3>Prompt para un Quiz tipo "Escape Room"</h3><div class="example-code">"Diseña un mini 'escape room' de 5 acertijos para repasar la tabla periódica. Cada acertijo resuelto debe dar una pista para el siguiente. El tema es 'El Laboratorio Perdido del Dr. Elemento'. Los acertijos deben involucrar propiedades de los elementos, números atómicos y grupos."</div></div><h3>Narrativas y Aventuras Educativas</h3><ul><li><strong>Aventuras de "Elige tu propio camino":</strong> "Crea una historia interactiva donde el lector es un comerciante en la Ruta de la Seda. En cada párrafo, ofrécele dos opciones que afecten el resultado de su viaje. El objetivo es enseñar sobre los bienes, peligros y culturas de la época."</li><li><strong>Generación de Personajes y Escenarios:</strong> "Estoy creando un juego de mesa sobre el ecosistema del páramo. Genera 5 personajes (animales o plantas) con una habilidad especial cada uno, relacionada con su rol real en el ecosistema."</li></ul></div></div></div>
+    <div id="modal-ideas-innovadoras" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">💡 Generar Ideas Innovadoras</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>La IA puede ser un excelente compañero de brainstorming para romper el bloqueo creativo y diseñar clases más dinámicas.</p><h3>Técnicas de Brainstorming:</h3><ul><li><strong>Analogías y Metáforas:</strong> "Explica el concepto de 'inercia' usando una analogía relacionada con los deportes y otra con las redes sociales."</li><li><strong>Conexiones Inesperadas:</strong> "Encuentra 3 puntos de conexión entre el arte del Renacimiento y los principios de la programación orientada a objetos."</li><li><strong>Aprendizaje Basado en Proyectos (ABP):</strong> "Diseña una idea para un proyecto de un mes para estudiantes de 9° grado que combine historia y biología. El proyecto debe abordar el impacto de las epidemias en la historia mundial."</li></ul><div class="example-box"><h3>Prompt para una Clase Inolvidable</h3><div class="example-code">"Quiero dar una clase memorable sobre la fotosíntesis. Dame una idea para un 'gancho' o actividad de inicio impactante, una actividad práctica central que no requiera materiales costosos, y una forma creativa de evaluar la comprensión al final de la clase que no sea un examen tradicional."</div></div></div></div></div>
+    <div id="modal-crear-presentaciones" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">🖼️ Crear Presentaciones Multimedia</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>La IA puede agilizar enormemente la creación de presentaciones, desde el guion hasta los elementos visuales.</p><h3>Estructura y Contenido</h3><p>Puedes pedirle que organice tus ideas en una estructura lógica de diapositivas.</p><div class="example-code">"Crea el guion para una presentación de 7 diapositivas sobre el cambio climático para un público general.
+- Diapositiva 1: Título impactante.
+- Diapositiva 2: ¿Qué es el cambio climático? (Explicación simple).
+- Diapositiva 3: Evidencias (Gráficos, datos).
+- Diapositiva 4: Causas principales.
+- Diapositiva 5: Consecuencias.
+- Diapositiva 6: ¿Qué podemos hacer?
+- Diapositiva 7: Llamado a la acción y cierre."</div><h3>Generación de Imágenes</h3><p>Herramientas como DALL-E, Midjourney o el generador de imágenes de Copilot pueden crear imágenes personalizadas para cada diapositiva, manteniendo un estilo visual consistente.</p><div class="example-box"><h3>Prompt para Generar una Imagen</h3><div class="example-code">"Crea una imagen para una diapositiva sobre las consecuencias del cambio climático. Estilo: ilustración digital esperanzadora. Muestra a un grupo diverso de personas (niños y adultos) plantando árboles en un paisaje que en un lado está seco y en el otro es verde y frondoso, mostrando la transformación positiva."</div></div></div></div></div>
+    <div id="modal-entornos-programacion" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">🐍 Programación con Python</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p><strong>Python</strong> es el lenguaje predilecto para la ciencia de datos y la IA por su sintaxis sencilla y sus potentes librerías (como Matplotlib, Seaborn, Pandas). La IA puede ayudarnos a generar, explicar y depurar código.</p><h3>Google Colab y Jupyter Notebooks</h3><p>Son entornos de desarrollo interactivos que permiten combinar código ejecutable, texto, ecuaciones y visualizaciones en un solo documento. Son ideales para la docencia.</p><ul><li><strong>Google Colab:</strong> Es un Jupyter Notebook gratuito en la nube que no requiere instalación y te da acceso a GPUs para cálculos pesados.</li><li><strong>Jupyter Notebook:</strong> Es el software original que puedes instalar en tu computador para trabajar de forma local.</li></ul><div class="example-box"><h3>Prompt para Crear una Gráfica</h3><div class="example-code">"Escribe un script de Python usando la librería Matplotlib para crear una gráfica de barras. La gráfica debe mostrar las notas promedio de 3 materias: Matemáticas (3.5), Ciencias (4.2) y Literatura (3.8). Añade un título a la gráfica y etiquetas a los ejes X e Y. Incluye comentarios en el código explicando cada línea."</div></div></div></div></div>
+    <div id="modal-latex" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">📜 Documentos Científicos con LaTeX</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p><strong>LaTeX</strong> es un sistema de composición de textos de alta calidad, estándar en el mundo académico para escribir artículos, tesis y documentos científicos, especialmente en matemáticas y ciencias por su impecable manejo de fórmulas.</p><h3>Overleaf: LaTeX en la Nube</h3><p><strong>Overleaf</strong> es una plataforma online y colaborativa que elimina la necesidad de instalar LaTeX. Permite trabajar en tiempo real con colegas y ver el resultado del documento mientras escribes.</p><h3>¿Cómo ayuda la IA?</h3><p>La IA es una herramienta espectacular para generar código LaTeX, ahorrando horas de trabajo.</p><div class="example-box"><h3>Prompt para una Ecuación Compleja</h3><div class="example-code">"Necesito escribir la Fórmula General para resolver ecuaciones cuadráticas en LaTeX. El código debe ser:
+
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+
+Ahora, genera el código LaTeX para una matriz 3x3 con los elementos a, b, c en la primera fila, d, e, f en la segunda, y g, h, i en la tercera."</div></div><ul><li><strong>Generar Tablas:</strong> Puedes pegar datos de una hoja de cálculo y pedirle a la IA que genere el código LaTeX para una tabla formateada.</li><li><strong>Estructurar Documentos:</strong> "Genera la estructura básica de un artículo científico en LaTeX, con secciones para introducción, metodología, resultados y conclusiones."</li></ul></div></div></div>
+    <div id="modal-plataformas-ia" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">🎓 Plataformas Educativas con IA</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>Además de los modelos de lenguaje generales, han surgido plataformas diseñadas <strong>específicamente para las necesidades de los docentes</strong>, con interfaces y herramientas pensadas para el aula.</p><h3>Ejemplos Destacados:</h3><ul><li><strong>Khanmigo (de Khan Academy):</strong> Es un tutor de IA para estudiantes y un asistente para profesores. Puede guiar a los alumnos sin darles la respuesta, y ayudar a los docentes a planificar clases y evaluar el progreso.</li><li><strong>Eduaide:</strong> Es una plataforma con más de 100 herramientas pedagógicas impulsadas por IA. Permite generar planes de lecciones, rúbricas, informes, preguntas, y mucho más, todo desde una interfaz centrada en el docente.</li><li><strong>Curipod:</strong> Se enfoca en crear lecciones interactivas y atractivas. Permite generar diapositivas, nubes de palabras, encuestas y dibujos interactivos para captar la atención de los estudiantes.</li></ul><div class="example-box"><p>Estas plataformas a menudo ofrecen un "prompt engineering" ya hecho, presentando al docente formularios y opciones claras para generar recursos pedagógicos de alta calidad sin necesidad de ser un experto en escribir prompts.</p></div></div></div></div>
+    <div id="modal-aprendizaje-personalizado" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">🧬 Aprendizaje Personalizado</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>El aprendizaje personalizado es el "santo grial" de la educación: una experiencia de aprendizaje adaptada a las fortalezas, debilidades, intereses y ritmo de cada estudiante. La IA lo hace posible a una escala que antes era impensable.</p><h3>¿Cómo funciona?</h3><ul><li><strong>Tutores de IA 24/7:</strong> Un estudiante puede hacer preguntas en cualquier momento y recibir ayuda instantánea y adaptada. Si no entiende una explicación, la IA puede ofrecerla de otra manera, con una analogía diferente o un ejemplo más simple.</li><li><strong>Rutas de Aprendizaje Adaptativas:</strong> Un sistema de IA puede analizar las respuestas de un estudiante en una tarea y determinar sus brechas de conocimiento. Basado en eso, puede sugerir automáticamente videos, lecturas o ejercicios específicos para reforzar esas áreas débiles antes de avanzar.</li><li><strong>Contenido Relevante:</strong> La IA puede adaptar el contenido a los intereses del estudiante. Por ejemplo, un problema de física sobre proyectiles podría enmarcarse en un partido de fútbol para un estudiante aficionado a los deportes, o en el lanzamiento de un cohete para uno interesado en el espacio.</li></ul><div class="example-box"><p>El objetivo no es reemplazar al docente, sino darle "superpoderes": la IA maneja la instrucción diferenciada y la práctica repetitiva, liberando al profesor para que se enfoque en la mentoría, el pensamiento crítico y la conexión humana.</p></div></div></div></div>
+    <div id="modal-retos-ia" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">🤔 Retos y Reflexiones Éticas</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>Adoptar la IA en el aula no está exento de desafíos. Es crucial abordarlos con una mentalidad crítica y proactiva.</p><h3>Honestidad Académica y Evaluación</h3><p>El "copy-paste" es una preocupación real. Sin embargo, esto nos obliga a evolucionar.</p><ul><li><strong>Cambiar el Enfoque:</strong> Evaluar menos el producto final y más el <strong>proceso</strong>. Pedir a los estudiantes que documenten cómo usaron la IA, qué prompts usaron y cómo refinaron los resultados.</li><li><strong>Nuevas Habilidades:</strong> La habilidad clave ya no es memorizar, sino <strong>validar, criticar y mejorar</strong> la información generada por la IA.</li></ul><h3>Sesgos y Desinformación</h3><p>Los modelos de IA se entrenan con datos de internet, que contienen sesgos (raciales, de género, etc.) y desinformación. La IA puede "alucinar", es decir, inventar hechos y fuentes con total confianza.</p><ul><li><strong>Alfabetización Mediática:</strong> Es más importante que nunca enseñar a los estudiantes a verificar fuentes, contrastar información y cuestionar las respuestas de la IA.</li><li><strong>El Docente como Curador:</strong> Nuestro rol es guiar a los estudiantes, ayudándolos a navegar la información y a desarrollar un pensamiento crítico.</li></ul><div class="example-box"><h3>La Pregunta Clave</h3><p>La pregunta no debe ser "¿Cómo evitamos que los estudiantes usen IA?", sino <strong>"¿Cómo les enseñamos a usar la IA de manera efectiva, ética y crítica para potenciar su aprendizaje?"</strong></p></div></div></div></div>
+    <div id="modal-automatizacion" class="modal"><div class="modal-content"><div class="modal-header"><h2 class="modal-title">⚙️ Automatización Inteligente</h2><button class="close-btn" data-modal-close>&times;</button></div><div class="modal-body"><p>Una de las promesas más inmediatas y tangibles de la IA en educación es la capacidad de automatizar tareas repetitivas y administrativas que consumen una gran cantidad del tiempo de un docente.</p><h3>Tareas a Automatizar:</h3><ul><li><strong>Calificación de Tareas:</strong> La IA puede ir más allá de las preguntas de opción múltiple y evaluar respuestas cortas, identificar conceptos clave en un ensayo e incluso dar retroalimentación preliminar sobre la gramática y la estructura.</li><li><strong>Comunicación con Padres:</strong> Puede generar borradores de correos electrónicos para informar a los padres sobre el progreso de sus hijos, próximos eventos o tareas pendientes, personalizando cada mensaje.</li><li><strong>Creación de Informes:</strong> Analizando los datos de rendimiento de los estudiantes, la IA puede generar informes de progreso individuales, destacando fortalezas y áreas de mejora.</li><li><strong>Diferenciación de Materiales:</strong> "Toma este plan de clase y crea tres versiones: una para estudiantes con alto rendimiento, una para el grupo general y otra con apoyo adicional para estudiantes con dificultades."</li></ul><div class="example-box"><h3>El Beneficio Final</h3><p>Al delegar estas tareas a un asistente de IA, los docentes recuperan su recurso más valioso: el <strong>tiempo</strong>. Tiempo que puede ser reinvertido en lo que realmente importa: la planificación creativa, la interacción uno a uno con los estudiantes, la mentoría y la construcción de relaciones significativas en el aula.</p></div></div></div></div>
+
+    <!-- ===== SCRIPT JAVASCRIPT ===== -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        function initializeModalSystem() {
+            const openModalTriggers = document.querySelectorAll('[data-modal-target]');
+            const closeModalTriggers = document.querySelectorAll('[data-modal-close]');
+
+            const openModal = (modal) => {
+                if (modal == null) return;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeModal = (modal) => {
+                if (modal == null) return;
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            };
+            
+            openModalTriggers.forEach(trigger => {
+                if (trigger.querySelector('.click-indicator')) return;
+                
+                const indicator = document.createElement('div');
+                indicator.className = 'click-indicator';
+                indicator.innerText = 'VER MÁS';
+                trigger.appendChild(indicator);
+                
+                trigger.addEventListener('click', () => {
+                    const modalId = trigger.dataset.modalTarget;
+                    const modal = document.getElementById(modalId);
+                    if(modal) {
+                        openModal(modal);
+                    } else {
+                        console.error("Error: No se encontró el modal con ID:", modalId);
+                    }
+                });
+            });
+
+            closeModalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const modal = trigger.closest('.modal');
+                    closeModal(modal);
+});
+            });
+
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal(modal);
+                    }
+                });
+            });
+
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const activeModal = document.querySelector('.modal.active');
+                    closeModal(activeModal);
+                }
+            });
+        }
+
+        function createSpaceParticles() {
+            const container = document.querySelector('.space-particles');
+            if (!container) return;
+            const particleCount = 80;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 12 + 's';
+                particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        function animateOnScroll() {
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+            });
+            sections.forEach(section => observer.observe(section));
+        }
+        
+        function initializeTimelineInteraction() {
+            const timelineMarkers = document.querySelectorAll('.timeline-event-marker');
+            if(timelineMarkers.length === 0) return;
+
+            const detailContents = document.querySelectorAll('.timeline-detail-content');
+
+            timelineMarkers.forEach(marker => {
+                marker.addEventListener('click', () => {
+                    const targetId = marker.dataset.contentTarget;
+                    
+                    timelineMarkers.forEach(m => m.classList.remove('active'));
+                    marker.classList.add('active');
+
+                    detailContents.forEach(content => {
+                        if (content.id === targetId) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        }
+
+        const heroSection = document.querySelector('#inicio');
+        if (heroSection) {
+            heroSection.classList.add('visible');
+        }
+
+        createSpaceParticles();
+        animateOnScroll();
+        initializeModalSystem();
+        initializeTimelineInteraction();
+    });
+    </script>
+</body>
+</html>
